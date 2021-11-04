@@ -1,0 +1,6 @@
+timezone: UTC
+
+prismic_repository: bridgetown-testing
+autoload_paths:
+  - path: models
+    eager: true

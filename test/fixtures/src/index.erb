@@ -1,0 +1,12 @@
+---
+layout: default
+---
+
+<% post = collections.posts.resources.first %>
+
+title: |<%= post.data.title %>|
+subtitle: |<%= post.data.subtitle %>|
+author: |<%= post.data.author %>|
+featured_image: |<%= post.data.featured_image %>|
+
+<%= post.content %>
