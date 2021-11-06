@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative "./helper"
-#require_relative "fixtures/models/post"
 
 class TestBridgetownPrismic < Bridgetown::TestCase
   def setup

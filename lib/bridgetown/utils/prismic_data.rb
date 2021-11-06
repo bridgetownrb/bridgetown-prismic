@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Bridgetown
   module Utils
     class PrismicData < RubyFrontMatter
@@ -9,7 +11,7 @@ module Bridgetown
         end
 
         @provided_called = true
-        self.instance_exec(&block)
+        instance_exec(&block)
 
         nil
       end

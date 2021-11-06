@@ -20,3 +20,4 @@ AllCops:
 
     - script/**/*
     - vendor/**/*
+    - test/fixtures/**/*

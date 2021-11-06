@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 module BridgetownPrismic
   module API
-    def configure_prismic
-      Bridgetown.logger.info "Prismic API:", "Connecting to #{site.config.prismic_repository.yellow}..."
+    def configure_prismic # rubocop:disable Metrics/AbcSize
+      Bridgetown.logger.info "Prismic API:",
+                             "Connecting to #{site.config.prismic_repository.yellow}..."
       site.config.prismic_api = Prismic.api("https://#{site.config.prismic_repository}.cdn.prismic.io/api")
       site.config.prismic_link_resolver ||= Prismic::LinkResolver.new(nil) do |link|
-        if site.config.prismic_preview_token
-          next "/preview/#{link.type}/#{link.id}"
-        end
+        next "/preview/#{link.type}/#{link.id}" if site.config.prismic_preview_token
 
         if model_exists_for_prismic_type? link.type
           model_for_prismic_type(link.type).prismic_url(link)
@@ -40,9 +41,9 @@ module BridgetownPrismic
     end
 
     def prismic_types
-      Bridgetown::Model::Base.descendants.map do |klass|
+      Bridgetown::Model::Base.descendants.filter_map do |klass|
         klass.respond_to?(:prismic_custom_type) ? klass.prismic_custom_type : nil
-      end.compact
+      end
     end
 
     def model_exists_for_prismic_type?(type)

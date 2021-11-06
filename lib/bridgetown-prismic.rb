@@ -13,24 +13,27 @@ require_relative "bridgetown-prismic/builder"
 require_relative "bridgetown-prismic/origin"
 require_relative "bridgetown/utils/prismic_data"
 
-Bridgetown::Model::Base.class_eval do
+Bridgetown::Model::Base.class_eval do # rubocop:disable Metrics/BlockLength
   class << self
     attr_accessor :extensions_have_been_registered
   end
 
   def self.import_prismic_document(doc) = new(BridgetownPrismic::Origin.import_document(doc))
+
   def self.with_links = Bridgetown::Current.site.config.prismic_link_resolver
+
   def self.provide_data(&block)
     @prismic_data.provide_data(&block)
   end
 
-  def self.prismic_data(origin, doc = nil)
+  def self.prismic_data(origin, doc = nil) # rubocop:todo Metrics/AbcSize
     site = Bridgetown::Current.site
     @prismic_data = Bridgetown::Utils::PrismicData.new(scope: self)
 
     unless doc
       prismic_id = origin.id.split("/").last
-      # note: if site.config.prismic_preview_token isn't set, it will default to master (published) ref
+      # NOTE: if site.config.prismic_preview_token isn't set, it will default to
+      # master (published) ref
       doc = site.config.prismic_api.getByID(prismic_id, { ref: site.config.prismic_preview_token })
     end
 
@@ -51,7 +54,7 @@ Bridgetown::Model::Base.class_eval do
   end
 
   def prismic_document
-    return nil unless BridgetownPrismic::Origin === origin
+    return nil unless origin.is_a?(BridgetownPrismic::Origin)
 
     origin.prismic_document
   end
