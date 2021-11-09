@@ -14,7 +14,7 @@ module BridgetownPrismic
 
     def initialize(id, prismic_document = nil)
       super(id)
-      @relative_path = Pathname.new(id.delete_prefix("prismic://"))
+      @relative_path = Pathname.new("#{id.delete_prefix("prismic://")}.html")
       @prismic_document = prismic_document # could be nil, so model should load preview instance
     end
 
