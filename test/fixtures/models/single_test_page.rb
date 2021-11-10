@@ -7,16 +7,16 @@ class SingleTestPage < Bridgetown::Model::Base
   end
 
   def self.process_prismic_document(doc)
-    provide_data do
+    provide_data({
       # Variable        # Prismic Field                 # Formatting
-      id                doc.id
-      slug from: ->     { "#{prismic_slug(doc)}.html" }
-      type              doc.type
-      created_at        doc.first_publication_date
+      id:               doc.id,
+      slug:             prismic_slug(doc),
+      type:             doc.type,
+      created_at:       doc.first_publication_date,
 
-      title             doc["test_page.title"]          .as_text
+      title:            doc["test_page.title"]          .as_text,
 
-      content           doc["test_page.body"]           .as_html with_links
-    end
+      content:          doc["test_page.body"]           &.as_html(with_links),
+    })
   end
 end

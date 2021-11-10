@@ -35,4 +35,15 @@ class TestBridgetownPrismic < Bridgetown::TestCase
       @site.collections.posts.resources.first.model.prismic_document.is_a?(Prismic::Document)
     end
   end
+
+  context "test_page model" do
+    setup do
+      @site.process
+      @resource = @site.collections.pages.resources.find { |page| page.id.include?("test_page") }
+    end
+
+    should "have the right data" do
+      assert_equal "This is a test page", @resource.data.title
+    end
+  end
 end

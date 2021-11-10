@@ -22,7 +22,14 @@ Bridgetown::Model::Base.class_eval do # rubocop:disable Metrics/BlockLength
 
   def self.with_links = Bridgetown::Current.site.config.prismic_link_resolver
 
-  def self.provide_data(&block)
+  def self.provide_data(hsh = nil, &block)
+    if hsh
+      hsh.each do |k, v|
+        @prismic_data.set k, v
+      end
+      return
+    end
+
     @prismic_data.provide_data(&block)
   end
 
