@@ -245,7 +245,7 @@ or an ERB layout:
 
 ## Deploying on Render
 
-You can easily deploy your preview site on Render and use it for previewing draft content. For modest website deployments, your preview site could also serve as your public site (with the public only seeing the "static" published content), but generally we recommend a second static site deployment for the public to access (which Render also supports—you can run `bin/bridgetown configure render` to set up a static site config).
+You can easily deploy your preview site on [Render](https://render.com) and use it for previewing draft content. For modest website deployments, your preview site could also serve as your public site (with the public only seeing the "static" published content), but generally we recommend a second static site deployment for the public to access (which Render also supports—you can run `bin/bridgetown configure render` to set up a static site config).
 
 The starter plan (US $7/month as of the time of this writing) is recommended. Simply add (or edit) a `render.yaml` file in the root of your site repo:
 
