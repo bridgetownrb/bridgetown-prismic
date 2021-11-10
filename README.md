@@ -179,9 +179,13 @@ A few notes on the Ruby DSL:
   ```
   This would result in a `resource.data.tiles` array with one or more hashes including `backdrop`, `heading`, and `description` keys.
 
-The Ruby DSL is pretty nifty, but you may occasionally run into a conflict between your variable name and an existing Ruby method. For example, you couldn't add something like `method  doc["page.method"]  .as_text` because `method` is an existing Ruby object method. Instead, use `set` like so: `set :method, doc["page.method"].as_text`.
+The Ruby DSL is pretty nifty, but you may occasionally run into a conflict between your variable name and an existing Ruby method. For example, you couldn't add something like `method  doc["page.method"]  .as_text` because `method` is an existing Ruby object method. Instead, use `set` like so:
 
-Finally, if you decide to need to bail and want to provide a hash instead of using the Ruby DSL, you can do that too!
+```ruby
+set :method, doc["page.method"].as_text
+```
+
+Finally, if you decide to need to bail and want to provide a standard hash instead of using the Ruby DSL, you can do that too!
 
 ```ruby
 def self.process_prismic_document(doc)
@@ -199,7 +203,7 @@ def self.process_prismic_document(doc)
 end
 ```
 
-Just remember to put all your colons and commas in the right places! 😅
+Just remember to put all your colons, commas, and parentheses in the right places! 😅
 
 ### Trying Out Your Models
 
