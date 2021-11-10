@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module BridgetownPrismic
   module Roda
-    module Previewing
+    module Previews
       def prismic_preview_token
         request.params["token"] || request.cookies[Prismic::PREVIEW_COOKIE]
       end
@@ -14,7 +16,7 @@ module BridgetownPrismic
         response.set_cookie Prismic::PREVIEW_COOKIE, bridgetown_site.config.prismic_preview_token
         BridgetownPrismic.api.preview_session(
           bridgetown_site.config.prismic_preview_token,
-          bridgetown_site.config.prismic_link_resolver(),
+          bridgetown_site.config.prismic_link_resolver,
           "/"
         )
       end

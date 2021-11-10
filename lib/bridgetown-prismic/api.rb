@@ -36,7 +36,7 @@ module BridgetownPrismic
 
     def model_for_prismic_type(type)
       Bridgetown::Model::Base.descendants.find do |klass|
-        klass.respond_to?(:prismic_custom_type) && klass.prismic_custom_type == type
+        klass.respond_to?(:prismic_custom_type) && klass.prismic_custom_type == type.to_sym
       end
     end
 

@@ -26,7 +26,7 @@ Bridgetown::Model::Base.class_eval do # rubocop:disable Metrics/BlockLength
     @prismic_data.provide_data(&block)
   end
 
-  def self.prismic_data(origin, doc = nil) # rubocop:todo Metrics/AbcSize
+  def self.prismic_data(origin, doc = nil) # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
     site = Bridgetown::Current.site
     @prismic_data = Bridgetown::Utils::PrismicData.new(scope: self)
 

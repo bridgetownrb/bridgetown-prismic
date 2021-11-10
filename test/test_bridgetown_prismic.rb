@@ -28,6 +28,7 @@ class TestBridgetownPrismic < Bridgetown::TestCase
     should "output resource content" do
       assert_includes @contents, "<p>Hello.</p>"
       assert_includes @contents, "<p>I am the <strong>post body</strong>.</p>"
+      assert_includes @contents, "<p><a href=\"/test-page\">Here&#39;s a link</a>!</p>"
     end
 
     should "provide original document" do
