@@ -39,6 +39,11 @@ Bridgetown::Model::Base.class_eval do # rubocop:disable Metrics/BlockLength
 
     @prismic_data = @prismic_data.tap do
       process_prismic_document(doc)
+    rescue StandardError => e
+      doc_title = doc["#{doc.type}.title"] ? ", Title: #{doc["#{doc.type}.title"].as_text}" : ""
+      Bridgetown.logger.error "Prismic API:", "Error while importing `#{doc.type}':"
+      Bridgetown.logger.error "Prismic API:", "Slug: #{doc.slug}#{doc_title}"
+      raise e
     end.to_h
 
     if @prismic_data[:content]
