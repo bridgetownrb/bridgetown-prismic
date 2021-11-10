@@ -7,8 +7,8 @@ Gem::Specification.new do |spec|
   spec.version       = BridgetownPrismic::VERSION
   spec.author        = "Bridgetown Team"
   spec.email         = "maintainers@bridgetownrb.com"
-  spec.summary       = "Sample code for creating new Bridgetown plugins"
-  spec.homepage      = "https://github.com/username/bridgetown-prismic"
+  spec.summary       = "A Prismic CMS integration plugin for Bridgetown"
+  spec.homepage      = "https://github.com/bridgetownrb/bridgetown-prismic"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r!^(test|script|spec|features|frontend)/!) }
