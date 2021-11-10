@@ -7,10 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+...
+
+## 0.1.1
+
 - Fix bugs and test link resolvers
 - Better error handling and Roda preview assistance
 - Enforce `.html` for relative path
 
-## 0.1.0 (unrelased)
+## 0.1.0 (unreleased)
 
 - First version
