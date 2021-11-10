@@ -12,4 +12,5 @@ append_to_file "bridgetown.config.yml" do
   YAML
 end
 
-create_file "models/post.rb", File.read(File.join(__dir__, "test", "fixtures", "models", "post.rb"))
+get "https://raw.githubusercontent.com/bridgetownrb/bridgetown-prismic/main/test/fixtures/models/post.rb",
+    "models/post.rb"
