@@ -115,7 +115,7 @@ end
 * `collection_name`: this can be a built-in collection such as `posts` or `pages`, or it can be a custom collection you've configured in `bridgetown.config.yml`.
 * `prismic_custom_type`: this will be the "API ID" of the custom type in Prismic.
 * `prismic_slug`: this should return the "slug" (aka `my-document-title`) of a Prismic document. In this example the slug Prismic chose is being used verbatim, but you can make alterations as you see fit.
-* `prismic_url`: this should return the full URL of the final destination for the content. It should match the permalink settings of your collection. This is used by the "link resolver"—aka anywhere in a Prismic document where you've added a link to another Prismic document, the URL for that link to resolved using this return value for the custom type.
+* `prismic_url`: this should return the full URL of the final destination for the content. It should match the permalink settings of your collection. This is used by the "link resolver"—aka anywhere in a Prismic document where you've added a link to another Prismic document, the URL for that link is resolved using this return value for the custom type.
 
 All right, with those options out of the way, on to the main event:
 
@@ -141,7 +141,7 @@ end
 
 This where you create the 1:1 mappings between the Prismic fields and the "front matter" (aka data) + content of your model/resource. Any time you access the resource in templates by writing `resource.data.title` or `resource.content`, it will be pulling those values from these mappings.
 
-Within the `provide_data` block, you use a special Ruby DSL in a spreadsheet-like manner to set up the mappings. On the left-hand "column", you specify the name of the front matter variable (or content). In the middle column, you use Prismic's Ruby API to get a field value or metadata. On the right-hand column, you "coerce" the value into the type of data you'r looking for. Note that any field which the author hasn't filled in has a `nil` value, so you can see this is using Ruby's safe navigation operator `&` (whimsically known as the "lonely operator") most of the time so nil values won't crash the import process.
+Within the `provide_data` block, you use a special Ruby DSL in a spreadsheet-like manner to set up the mappings. On the left-hand "column", you specify the name of the front matter variable, as well as  `content` (optional but recommended). In the middle column, you use Prismic's Ruby API to get a field value or metadata. On the right-hand column, you "coerce" the value into the type of data you're looking for. Note that any field which the author hasn't filled in has a `nil` value, so you can see we're using Ruby's safe navigation operator `&` (whimsically known as the "lonely operator") most of the time so nil values won't crash the import process.
 
 You can [read more about Prismic's Ruby Document API here](https://prismic.io/docs/technologies/the-document-object-ruby) for information on when to use `value` or `as_text` or `url`, etc.
 
@@ -185,7 +185,7 @@ The Ruby DSL is pretty nifty, but you may occasionally run into a conflict betwe
 set :method, doc["page.method"].as_text
 ```
 
-Finally, if you decide to need to bail and want to provide a standard hash instead of using the Ruby DSL, you can do that too!
+Finally, if you decide to need to bail and want to provide a standard hash instead of using the Ruby DSL, you can do that too! It's not as flexible as the DSL because you can't arbitrarily insert multi-line statements of Ruby code within the data hash, but it's easy enough to understand:
 
 ```ruby
 def self.process_prismic_document(doc)
