@@ -46,4 +46,12 @@ class TestBridgetownPrismic < Bridgetown::TestCase
       assert_equal "This is a test page", @resource.data.title
     end
   end
+
+  context "pagination queries" do
+    should "pull in all data" do
+      builder = BridgetownPrismic::Builder.new
+      builder.configure_prismic
+      assert_equal 2, builder.query_prismic(:blog_post, { "pageSize" => 1 }).length
+    end
+  end
 end

@@ -20,10 +20,27 @@ module BridgetownPrismic
     def query_prismic(custom_type, options = {})
       Bridgetown.logger.info "Prismic API:", "Loading #{custom_type.to_s.green}..."
 
-      BridgetownPrismic
-        .api
-        .query(Prismic::Predicates.at("document.type", custom_type.to_s), options)
-        .results
+      results = []
+      page = 1
+      finalpage = false
+      options["pageSize"] ||= 100 # pull in as much data as possible for a single request
+
+      until finalpage
+        options["page"] = page
+
+        response = BridgetownPrismic
+          .api
+          .query(Prismic::Predicates.at("document.type", custom_type.to_s), options)
+
+        results += response.results
+        if response.total_pages > page
+          page += 1
+        else
+          finalpage = true
+        end
+      end
+
+      results
     end
 
     def query_prismic_and_generate_resources_for(klass)

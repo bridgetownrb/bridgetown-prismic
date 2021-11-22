@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ...
 
+## 0.2.0
+
+- Automatically paginate through results sets
+
 ## 0.1.2
 
 - Add hash option to `provide_data`
