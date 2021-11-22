@@ -10,7 +10,12 @@ module BridgetownPrismic
         next "/preview/#{link.type}/#{link.id}" if site.config.prismic_preview_token
 
         if model_exists_for_prismic_type? link.type
-          model_for_prismic_type(link.type).prismic_url(link)
+          full_doc = Async do
+            Bridgetown::Current.site = site # ensure fiber has copy of the current site
+            site.config.prismic_api.getByID(link.id)
+          end.wait
+
+          model_for_prismic_type(link.type).prismic_url(full_doc)
         else
           "/"
         end
