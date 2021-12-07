@@ -129,6 +129,7 @@ def self.process_prismic_document(doc)
     created_at        doc.first_publication_date
     date              doc["blog_post.optional_publish_datetime"]&.value&.localtime || created_at
 
+    layout            :post
     title             doc["blog_post.title"]          .as_text
     subtitle          doc["blog_post.subtitle"]       &.as_text
     author            doc["blog_post.author_name"]    &.as_text
@@ -196,6 +197,7 @@ def self.process_prismic_document(doc)
     type:             doc.type,
     created_at:       doc.first_publication_date,
 
+    layout:           :post,
     title:            doc["test_page.title"]          .as_text,
 
     content:          doc["test_page.body"]           &.as_html(with_links),
@@ -204,6 +206,12 @@ end
 ```
 
 Just remember to put all your colons, commas, and parentheses in the right places! 😅
+
+### Mind your defaults!
+
+One gotcha to be aware of is that Prismic-sourced resources _will not pick up front matter defaults_ from any `_defaults.yml` files you may add to your `src` tree (for example in `src/_posts`). This is because `_defaults.yml` acts upon the file system directly, and resources originating from Prismic aren't part of the filesystem per se.
+
+However, you can definitely use the YAML-based front matter defaults which you add to `bridgetown.config.yml` to set defaults for any collection. In addition, you can put any "default" data directly in your model definitions (such as the `layout: post` example above).
 
 ### Trying Out Your Models
 
