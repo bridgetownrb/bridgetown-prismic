@@ -20,6 +20,7 @@ class Post < Bridgetown::Model::Base
       created_at        doc.first_publication_date
       date              doc["blog_post.optional_publish_datetime"]&.value&.localtime || created_at
 
+      layout            :post
       title             doc["blog_post.title"]          .as_text
       subtitle          doc["blog_post.subtitle"]       &.as_text
       author            doc["blog_post.author_name"]    &.as_text
