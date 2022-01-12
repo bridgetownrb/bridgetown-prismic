@@ -244,7 +244,7 @@ Example for a Liquid layout:
 or an ERB layout:
 
 ```erb
-<% if site.data.prismic_preview_token %>
+<% if site.config.prismic_preview_token %>
   <p class="text-center" style="padding:7px; background:rgb(255, 230, 0); border-bottom:2px solid #333; margin:0; font-family:sans-serif; font-weight:bold; font-size:110%">
     PREVIEW
   </p>
