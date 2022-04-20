@@ -20,6 +20,12 @@ module BridgetownPrismic
           "/"
         end
       end
+
+      Bridgetown::Model::Base.descendants.each do |klass|
+        next unless klass.respond_to?(:prismic_custom_type)
+
+        Bridgetown::Resource.register_extension klass
+      end
     end
 
     def query_prismic(custom_type, options = {})

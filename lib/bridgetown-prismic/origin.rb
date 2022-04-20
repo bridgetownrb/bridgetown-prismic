@@ -28,7 +28,6 @@ module BridgetownPrismic
         raise "Could not find a specialized model class for ID `#{id}'"
       end
 
-      Bridgetown::Resource.register_extension klass unless klass.extensions_have_been_registered
       @data = klass.prismic_data(self, @prismic_document)
       @data[:_id_] = id
       @data[:_origin_] = self

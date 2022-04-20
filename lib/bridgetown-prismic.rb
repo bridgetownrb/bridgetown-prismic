@@ -14,10 +14,6 @@ require_relative "bridgetown-prismic/origin"
 require_relative "bridgetown/utils/prismic_data"
 
 Bridgetown::Model::Base.class_eval do # rubocop:disable Metrics/BlockLength
-  class << self
-    attr_accessor :extensions_have_been_registered
-  end
-
   def self.import_prismic_document(doc) = new(BridgetownPrismic::Origin.import_document(doc))
 
   def self.with_links = Bridgetown::Current.site.config.prismic_link_resolver
