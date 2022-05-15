@@ -4,6 +4,8 @@ module BridgetownPrismic
   class Builder < Bridgetown::Builder
     include BridgetownPrismic::API
 
+    priority :low if respond_to?(:priority)
+
     def build
       configure_prismic # in API module
 
