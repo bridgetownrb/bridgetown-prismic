@@ -4,12 +4,14 @@ require_relative "./helper"
 
 class TestBridgetownPrismic < Bridgetown::TestCase
   def setup
-    @site = Bridgetown::Site.new(Bridgetown.configuration(
-                                   "root_dir"    => root_dir,
-                                   "source"      => source_dir,
-                                   "destination" => dest_dir,
-                                   "quiet"       => true
-                                 ))
+    @config = Bridgetown.configuration(
+      "root_dir"    => root_dir,
+      "source"      => source_dir,
+      "destination" => dest_dir,
+      "quiet"       => true
+    )
+    @config.run_initializers! context: :static
+    @site = Bridgetown::Site.new(@config)
   end
 
   context "post model" do

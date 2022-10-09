@@ -33,5 +33,3 @@ module BridgetownPrismic
     end
   end
 end
-
-BridgetownPrismic::Builder.register

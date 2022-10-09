@@ -17,9 +17,9 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ">= 3.0"
 
-  spec.add_dependency "bridgetown", ">= 1.0.0.alpha8", "< 2.0"
+  spec.add_dependency "bridgetown", ">= 1.2.0.beta2", "< 2.0"
   spec.add_dependency "prismic.io", ">= 1.8"
-  spec.add_dependency "async", ">= 1.30", "< 2.0"
+  spec.add_dependency "async", ">= 2.0"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake", ">= 13.0"

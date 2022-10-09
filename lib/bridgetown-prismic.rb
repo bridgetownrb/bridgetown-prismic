@@ -67,3 +67,7 @@ Bridgetown::Model::Base.class_eval do # rubocop:disable Metrics/BlockLength
     origin.prismic_document
   end
 end
+
+Bridgetown.initializer :"bridgetown-prismic" do |config|
+  config.builder BridgetownPrismic::Builder
+end
