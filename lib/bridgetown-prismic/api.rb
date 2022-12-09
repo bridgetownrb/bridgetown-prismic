@@ -35,6 +35,8 @@ module BridgetownPrismic
       page = 1
       finalpage = false
       options["pageSize"] ||= 100 # pull in as much data as possible for a single request
+      query_options = Bridgetown::Current.site.config.prismic_query_options
+      options.merge!(query_options) if query_options
 
       until finalpage
         options["page"] = page
