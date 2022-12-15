@@ -33,7 +33,7 @@ Bridgetown::Model::Base.class_eval do # rubocop:disable Metrics/BlockLength
     site = Bridgetown::Current.site
     @prismic_data = Bridgetown::Utils::PrismicData.new(scope: self)
 
-    unless doc
+    unless doc && doc.instance_of?(Prismic::Document)
       prismic_id = origin.id.split("/").last
       # NOTE: if site.config.prismic_preview_token isn't set, it will default to
       # master (published) ref
