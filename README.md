@@ -11,7 +11,7 @@ This plugin requires Ruby 3 and the latest alpha version of [Bridgetown 1.0](htt
 Add the gem to your Gemfile and set up initial configuration by running the automation script:
 
 ```sh
-$ bin/bridgetown apply https://github.com/bridgetownrb/bridgetown-prismic
+bin/bridgetown apply https://github.com/bridgetownrb/bridgetown-prismic
 ```
 
 This will add a `prismic_repository` setting to your `bridgetown.config.yml` file. Replace that with the subdomain of your Prismic repo.
@@ -47,7 +47,7 @@ class RodaApp < Bridgetown::Rack::Roda
   plugin :bridgetown_ssr
 
   route do |r|
-    Bridgetown::Rack::Routes.start! self
+    r.bridgetown
   end
 end
 ```
@@ -178,7 +178,7 @@ A few notes on the Ruby DSL:
     end.flatten.compact
   }
   ```
-  This would result in a `resource.data.tiles` array with one or more hashes including `backdrop`, `heading`, and `description` keys.
+This would result in a `resource.data.tiles` array with one or more hashes including `backdrop`, `heading`, and `description` keys.
 
 The Ruby DSL is pretty nifty, but you may occasionally run into a conflict between your variable name and an existing Ruby method. For example, you couldn't add something like `method  doc["page.method"]  .as_text` because `method` is an existing Ruby object method. Instead, use `set` like so:
 
@@ -292,7 +292,8 @@ Please submit an issue to this GitHub repo and we'll address your concerns as so
 
 ## Testing This Gem
 
-* Run `bundle exec rake test` to run the test suite
+* Run `bundle exec rake test` to run the test suite (make sure to run `bundle
+  install`)
 * Or run `script/cibuild` to validate with Rubocop and Minitest together.
 
 ## Contributing
