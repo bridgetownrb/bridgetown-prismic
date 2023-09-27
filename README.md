@@ -1,3 +1,7 @@
+**Update:** Primic abandoned official support for Ruby some time ago, and the one production project I was officially using this plugin on ended up getting scrapped. I'm naturally predisposed towards keeping content in Git anyway and was always a little uncomfortable using a proprietary API service. So I've archived this plugin. If anyone else wants to pick up maintenance, let me know!
+
+----
+
 # Bridgetown Prismic CMS Plugin
 
 The [Bridgetown](https://edge.bridgetownrb.com) Prismic plugin allows you to pull content directly out of your [Prismic CMS](https://prismic.io) repository and generate resources you can use in all of your templates and plugins the same as if they were files saved directly in your site's `src` folder. Posts, pages, and any custom collections you want to set up are fully supported.
